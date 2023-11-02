@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Cookie&family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Lusitana:wght@400;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+.comfortaa {
+    font-family: 'Comfortaa', sans-serif;
+}
+.cookie {
+    font-family: 'Cookie', sans-serif;
+}
+.lato {
+    font-family: 'Lato', sans-serif;
+}
+.poppins {
+    font-family: 'Poppins', sans-serif;
+}
+.lusitana {
+    font-family: 'Lusitana', serif;
+}
+p{
+  cursor: default;
+}
+html
+{
+  scroll-behavior: smooth;
+}
+
+.animation-text
+{
+  animation: text 3s 1;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  
+}
+
+@keyframes text
+{
+    0%{
+        color: transparent;
+        margin-bottom: -40px;
+    }   
+    50%{
+        color: transparent;
+        margin-bottom: -40px;
+    }
+    60%{
+        color: #fff;
+        margin-bottom: 15px;
+    }
+    100%{
+        opacity: 1;
+        color: #fff;
+        margin-bottom: 15px;
+  }
+}
+
+.moveTextVertically
+{
+  animation: moveText 5s 1 ease;
+}
+
+@keyframes moveText
+{
+    0%{
+        transform: translateY(140px);
+    }   
+
+    20%{
+        transform: translateY(-75px);
+    }
+
+    40%{
+        opacity: 1;
+        transform: translateY(-140px);
+    }
+
+    60%{
+        transform: translateY(-205px);
+    }
+
+    80%{
+        opacity: 1;
+        transform: translateY(-270px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(-335px);
+  }
+}
+
+.mask-image
+{
+    mask-image: url('/Front-End.svg');
+    mask-position: 58.5% 52.2%;
+    mask-repeat: no-repeat;
+    mask-size: 50%;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
