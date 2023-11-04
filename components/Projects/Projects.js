@@ -21,13 +21,26 @@ export default function Projects({setScaleValue,cursorRef} = props) {
       Category: "Design , Development",
       year: "2023",
       image: [
-          "/images/Project1.png",
-          "/images/Project2.png",
-          "/images/Project3.png",
+          "/images/trans.png",
+          "/images/trans2.png",
+          "/images/trans3.png",
       ],
       link: "/",
-      technologies: ["NextJS", "TypeScript", "TailwindCSS", "Framer Motion", "NestJS", "Socket.io", "PostgreSQL", "Docker"],
-      github: "/"
+      technologies: ["NextJS", "TypeScript", "TailwindCSS", "NestJS", "Socket.io", "PostgreSQL", "Docker", "Prisma"],
+      github: "https://github.com/a-sabbar/Webserv"
+    },
+    {
+      title: "Medium Clone",
+      description: "Is a clone of the popular blogging platform Medium. It's a great opportunity to explore the NextJS framework and to implement a full-stack application using TypeScript.",
+      Category: "Development",
+      year: "2023",
+      image: [
+          "/images/medium1.png",
+          "/images/medium2.png",
+      ],
+      link: "/",
+      technologies: ["NextJs", "JavaScript", "TailwindCSS", "ExpressJs"],
+      github: "https://github.com/a-sabbar/medium_2.0"
     },
     {
       title: "Webserv",
@@ -35,13 +48,11 @@ export default function Projects({setScaleValue,cursorRef} = props) {
       Category: "Development",
       year: "2023",
       image: [
-        "/images/Project1.png",
-        "/images/Project2.png",
-        "/images/Project3.png",
+        "/images/Webserv1.png",
       ],
-      link: "/",
+      link: "https://github.com/a-sabbar/Webserv",
       technologies: ["c++", "Http", "TCP", "Socket"],
-      github: "/"
+      github: "https://github.com/a-sabbar/Webserv"
     },
     {
       title: "Inception",
@@ -49,13 +60,11 @@ export default function Projects({setScaleValue,cursorRef} = props) {
       Category: "Development",
       year: "2022",
       image: [
-        "/images/Project1.png",
-        "/images/Project2.png",
-        "/images/Project3.png",
+        "/images/inception1.png",
       ],
-      link: "/",
+      link: "https://github.com/a-sabbar/inception",
       technologies: ["Docker", "Virtual Machine", "Linux", "Shell"],
-      github: "/"
+      github: "https://github.com/a-sabbar/inception"
     },
     {
       title: "Minishell",
@@ -63,41 +72,23 @@ export default function Projects({setScaleValue,cursorRef} = props) {
       Category: "Development",
       year: "2022",
       image: [
-          "/images/Project1.png",
-          "/images/Project2.png",
-          "/images/Project3.png",
+          "/images/minishell1.png",
       ],
-      link: "/",
+      link: "https://github.com/a-sabbar/minishell",
       technologies: ["C", "Shell", "Linux"],
-      github: "/"
+      github: "https://github.com/a-sabbar/minishell"
     },
     {
-      title: "Philosophers",
-      description: "Project to explore the basics of threading a process. It's a great opportunity to discover threads in C and to see how they work internally.",
-      Category: "Development",
-      year: "2021",
-      image: [
-          "/images/Project1.png",
-          "/images/Project2.png",
-          "/images/Project3.png",
-      ],
-      link: "/",
-      technologies: ["C", "Algorithm", "Thread"],
-      github: "/"
-    },
-    {
-      title: "Push_swap",
+      title: "Push-Swap",
       description: "Project to sort data on a stack, with a limited set of instructions, using the lowest possible number of actions. It's a great opportunity to discover sorting algorithms and to implement them.",
       Category: "Development",
       year: "2021",
       image: [
-          "/images/Project1.png",
-          "/images/Project2.png",
-          "/images/Project3.png",
+          "/images/push-swap1.png",
       ],
-      link: "/",
+      link: "https://github.com/a-sabbar/push-swap",
       technologies: ["C", "Algorithm", "Sorting"],
-      github: "/"
+      github: "https://github.com/a-sabbar/push-swap"
     },
   ]
 

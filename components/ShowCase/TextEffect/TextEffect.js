@@ -37,7 +37,7 @@ export default function TextEffect({text} = props) {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             >
-                <div className=" flex gap-[1.5px]  cursor-pointer" ref={firstParent}>
+                <div className=" flex gap-1  cursor-pointer" ref={firstParent}>
                     {
                         textArray.map((char, index) => {
                             return(

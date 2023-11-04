@@ -1,9 +1,9 @@
 'use client'
 import Image from "next/image"
-import Link from "next/link"
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Inter } from 'next/font/google'
+import Link from "next/link";
 
 const interFont = Inter({ subsets: ['latin'] });
 
@@ -29,13 +29,13 @@ export default function Project({data, setScaleValue} = Props) {
         const projectsBodys = document.querySelectorAll(".projectBody");
         projectsBodys.forEach((body) => {
             if(body !== bodyRef.current){
-                body.classList.remove("!h-[700px]");
+                body.classList.remove("!h-auto");
             }
         }
         ); 
-        bodyRef.current.classList.toggle("!h-[700px]");
+        bodyRef.current.classList.toggle("!h-auto");
 
-       if(bodyRef.current.classList.contains("!h-[700px]")){
+       if(bodyRef.current.classList.contains("!h-auto")){
             setTimeout(() => {
                 window.scrollTo({
                     top: bodyRef.current.getBoundingClientRect().bottom + window.scrollY ,
@@ -67,7 +67,7 @@ export default function Project({data, setScaleValue} = Props) {
                 <p className="cursor-pointer z-[1]">{data.year}</p>
 
             </div>
-            <div className="projectBody flex flex-col gap-6 z-[1] top-[35px] duration-500 h-[0] w-full pt-[16px]"
+            <div className="projectBody flex flex-col gap-6 z-[1] top-[35px] duration-500 h-[0] w-full pt-[16px] "
             ref={bodyRef}
             >
                 <p className="text-white font-semibold text-3xl w-2/3">
@@ -80,18 +80,20 @@ export default function Project({data, setScaleValue} = Props) {
                         </li>
                     ))}
                 </div>
-                <div className="grid grid-cols-3 gap-6 z-[1] ">
+                <div className="grid grid-cols-3 gap-6 z-[1] pb-[50px]">
                     {
-                        data.image.map((img) => (
-                            <Image
-                                src={img}
-                                width={1920}
-                                height={1080}
-                                alt=""
-                                key={img}
-                                onMouseEnter={()=>setScaleValue(1.5)}
-                                onMouseLeave={()=>setScaleValue(1)}
-                            />
+                        data.image.map((img, index) => (
+                            <Link href={index == 0 ? data.github : data.link} key={img} target="_blank">
+                                <Image
+                                    src={img}
+                                    width={1920}
+                                    height={1080}
+                                    alt=""
+                                    onMouseEnter={()=>setScaleValue(1.5)}
+                                    onMouseLeave={()=>setScaleValue(1)}
+                                    className="mb-auto"
+                                />
+                            </Link>
                         ))
                     }
                 </div>

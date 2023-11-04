@@ -24,11 +24,6 @@ export default function Home() {
   const cursorRef = useRef(null);
   const [cursor, setCursor] = useState({ x: 0, y: 100 })
 
-//   setTimeout(() => {
-// 	setIsLoaded("opacity-0 hidden")
-
-//   }
-//   , 3000);
   useEffect( () => {
 
 	const lenis = new Lenis()
@@ -50,7 +45,6 @@ return (
 			<HomeBody setScaleValue={setScaleValue}/>
 			<Projects setScaleValue={setScaleValue} cursorRef={cursorRef}/>
 		</div>
-		{/* <Loading style={isLoaded}/> */}
 	</div>
 );
 }
