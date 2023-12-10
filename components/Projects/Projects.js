@@ -27,7 +27,7 @@ export default function Projects() {
       ],
       link: "/",
       technologies: ["NextJS", "TypeScript", "TailwindCSS", "NestJS", "Socket.io", "PostgreSQL", "Docker", "Prisma"],
-      github: "https://github.com/a-sabbar/Webserv"
+      github: "https://github.com/a-sabbar/ft_transcendence"
     },
     {
       title: "Medium Clone",
@@ -48,7 +48,7 @@ export default function Projects() {
       Category: "Development",
       year: "2023",
       image: [
-        "/images/Webserv1.png",
+        "/images/webserv1.png",
       ],
       link: "https://github.com/a-sabbar/Webserv",
       technologies: ["c++", "Http", "TCP", "Socket"],

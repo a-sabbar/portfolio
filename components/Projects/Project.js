@@ -10,12 +10,11 @@ const interFont = Inter({ subsets: ['latin'] });
 export default function Project({data} = Props) {
     const bodyRef = useRef(null);
     const [onHover, setOnHover] = useState({
-        y: -100,
+        y: "-100%",
     });
     const handleMouseEnter = (e) => {   
         setOnHover({
             y: 0 
-
         });
 
     }
