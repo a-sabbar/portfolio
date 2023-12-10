@@ -251,7 +251,7 @@ const HeadGallery = () => {
 function ImageInfo({url}) {
     const [hover, setHover] = useState(false)
     return (
-        <div className="flex gap-5 max-w-md min-w-[448px] h-fit cursor-pointer"
+        <div className="flex gap-5 max-w-md min-w-[448px] h-fit cursor-pointer "
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         >
@@ -414,9 +414,9 @@ function MyLine({url,text}) {
             {
                 myText.map((item, index) => {
                     return (
-                        <div key={index} className="flex">
+                        <div key={index} className="flex items-end gap-3">
                             <motion.span
-                                className="h-fit text-black text-9xl font-medium text-right"
+                                className="h-fit text-black font-medium text-right lg:text-8xl"
                                 style={Mate_SCFont.style}
                                 variants={{
                                     initial: {
@@ -464,7 +464,7 @@ function MyLine({url,text}) {
                                             width={1920}
                                             height={1080}
                                             alt=""
-                                            className="object-cover w-[200px] !max-w-[500px] h-[128px] select-none"
+                                            className="object-cover w-[200px] !max-w-[500px] h-[140px] select-none"
                                         />
                                     </motion.div>
                                 )
@@ -479,22 +479,16 @@ function MyLine({url,text}) {
 
 function Body() {
     return (
-        <div className="w-full  flex flex-col gap-40 items-center justify-center pt-[100px] no-scrollbar">
-            <div className="w-1/2 grid grid-cols-3 gap-16">
-                <div className="flex flex-col justify-center gap-[110px]">
+        <div className="w-full px-[50px] flex flex-col gap-40 items-center justify-center pt-[100px] no-scrollbar">
+            <div className=" grid grid-cols-3 gap-16 xl:grid-cols-3 lg:grid-cols-2 [&>*:nth-child(3)]:lg:max-xl:col-span-2">
                     <ImageInfo url="/BuildWeb/Gallery/I1.jpg"/>
-                    <ImageGallery url="/BuildWeb/Gallery/S1.jpg" header={"Cocinas"} type={"Lorem ipsum dolor."} />
-                </div>
-                <div className="flex flex-col justify-center gap-[110px]">
                     <ImageInfo url="/BuildWeb/Gallery/I2.jpg"/>
-                    <ImageGallery url="/BuildWeb/Gallery/S2.jpg" header={"Interiorismo"} type={"Lorem ipsum voluptatum."}/>
-                </div>
-                <div className="flex flex-col justify-center gap-[110px]">
                     <ImageInfo url="/BuildWeb/Gallery/I3.jpg"/>
+                    <ImageGallery url="/BuildWeb/Gallery/S1.jpg" header={"Cocinas"} type={"Lorem ipsum dolor."} />
+                    <ImageGallery url="/BuildWeb/Gallery/S2.jpg" header={"Interiorismo"} type={"Lorem ipsum voluptatum."}/>
                     <ImageGallery url="/BuildWeb/Gallery/S3.jpg" header={"Proyectos"} type={"Lorem ipsum dolvoluptatum."} />
-                </div>
             </div>
-            <div className="w-[calc(50%+20px)] flex flex-col items-start gap-5">
+            <div className="w-full flex flex-col justify-center items-center gap-5">
                 <MyLine url={"/BuildWeb/Gallery/L1.jpg"} text={"Heritage ,"}/>
                 <MyLine url={"/BuildWeb/Gallery/L2.jpg"} text={"Design And"}/>
                 <MyLine url={"/BuildWeb/Gallery/L3.jpg"} text={"Commitment Of"}/>

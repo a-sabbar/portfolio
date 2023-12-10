@@ -31,7 +31,7 @@ export default function Body() {
     return (
         <div className="flex h-screen  justify-center p-24 w-screen bg-black  overflow-hidden cursor-default relative items-center">
             <div className="flex flex-col items-center justify-center gap-[20px] z-[1]">
-                <a href={"/Achraf-Sabbar_Full-Stack"} download>
+                <a href={"/Achraf-Sabbar_Full-Stack.pdf"} download>
                     <Image src="/myImage.jpg" alt="" width={200} height={200} className="rounded-full w-48 h-48 x:max-sm:w-44 x:max-sm:h-44 object-cover outline outline-white outline-[2px]" />
                 </a>
                 <>
