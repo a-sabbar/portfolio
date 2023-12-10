@@ -25,7 +25,7 @@ export default function ClipMaskOnScroll() {
 
     const getScrollProgress = () => {
         const scrollProgress = maskRef.current.offsetTop / (continerRef.current.getBoundingClientRect().height - window.innerHeight);
-            return scrollProgress
+        return scrollProgress
     }
 
     return(

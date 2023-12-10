@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import Project from "./Project";
 
-export default function Projects({setScaleValue,cursorRef} = props) {
+export default function Projects() {
 
   const handleMouseEnter = (e) => {
     cursorRef.current.style.background = "transparent";
@@ -94,15 +94,11 @@ export default function Projects({setScaleValue,cursorRef} = props) {
 
   return (
     <div className=" w-full bg-black  relative flex flex-col gap-24 px-[10px] pb-[100px]"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
       <div className="flex justify-center items-cente min-w-full text-[7em] poppins font-[600] text-[#FFF]"
 
       >
-        <p className="z-[10] relative after:absolute after:top-8 after:right-1 after:w-[150px] after:h-[100px]  after:z-[-1] after:bg-[rgba(253,120,24,0.85)]" 
-          onMouseEnter={() => setScaleValue(0)}
-          onMouseLeave={() => setScaleValue(1)}
+        <p className="z-[10] x:max-sm:text-7xl relative after:absolute after:top-8 x:max-sm:after:w-[80px] x:max-sm:after:h-[60px] x:max-sm:after:top-3 after:right-1 after:w-[150px] after:h-[100px]  after:z-[-1] after:bg-[rgba(253,120,24,0.85)]" 
           >
           Projects.
         </p>
@@ -117,7 +113,7 @@ export default function Projects({setScaleValue,cursorRef} = props) {
         {
           Projects.map((project, index) => {
             return (
-              <Project key={index} data={project} setScaleValue={setScaleValue}/>
+              <Project key={index} data={project} />
             )
           })
         }

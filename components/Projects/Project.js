@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const interFont = Inter({ subsets: ['latin'] });
 
-export default function Project({data, setScaleValue} = Props) {
+export default function Project({data} = Props) {
     const bodyRef = useRef(null);
     const [onHover, setOnHover] = useState({
         y: -100,
@@ -55,32 +55,32 @@ export default function Project({data, setScaleValue} = Props) {
                 onMouseLeave={handleMouseLeave}
                 onClick={handleClick}
                 >
-                <motion.div className="w-full h-full absolute top-0 left-0 z-[0] bg-white " animate={{
+                <motion.div className="w-full h-full absolute top-0 left-0 z-[0] bg-white  x:max-sm:hidden" animate={{
                     y: onHover.y,
                     height: 50,
                     transition: {
                         duration: 0.3
                     }
                 }}/>
-                <p className="cursor-pointer z-[1]">{data.title}</p>
-                <p className="cursor-pointer z-[1]">{data.Category}</p>
-                <p className="cursor-pointer z-[1]">{data.year}</p>
+                <p className="x:max-sm:text-sm cursor-pointer z-[1]">{data.title}</p>
+                <p className="x:max-sm:text-sm cursor-pointer z-[1]">{data.Category}</p>
+                <p className="x:max-sm:text-sm cursor-pointer z-[1]">{data.year}</p>
 
             </div>
             <div className="projectBody flex flex-col gap-6 z-[1] top-[35px] duration-500 h-[0] w-full pt-[16px] "
             ref={bodyRef}
             >
-                <p className="text-white font-semibold text-3xl w-2/3">
+                <p className="text-white font-semibold text-3xl w-2/3 x:max-sm:w-full x:max-sm:text-xl">
                     {data.description}
                 </p>
                 <div className="list-disc text-white pl-[20px] text-base font-medium ">
                     {data.technologies.map((tech) => (
-                        <li key={tech}>
+                        <li key={tech} className="x:max-sm:text-sm">
                             {tech}
                         </li>
                     ))}
                 </div>
-                <div className="grid grid-cols-3 gap-6 z-[1] pb-[50px]">
+                <div className="grid grid-cols-3 gap-6 z-[1] pb-[50px] x:max-sm:grid-cols-1 x:max-sm:px-[20px]">
                     {
                         data.image.map((img, index) => (
                             <Link href={index == 0 ? data.github : data.link} key={img} target="_blank">
@@ -89,8 +89,6 @@ export default function Project({data, setScaleValue} = Props) {
                                     width={1920}
                                     height={1080}
                                     alt=""
-                                    onMouseEnter={()=>setScaleValue(1.5)}
-                                    onMouseLeave={()=>setScaleValue(1)}
                                     className="mb-auto"
                                 />
                             </Link>
