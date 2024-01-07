@@ -44,7 +44,7 @@ export default function Header() {
           {
             open && (
                 <>
-                    <div className="top-0 left-0 w-full h-[100vh] bg-black !m-0 z-10 absolute sm:hidden"></div>
+                    <div className="top-[0px] left-[0px] w-full h-[100vh] bg-black !m-0 z-10 fixed sm:hidden"></div>
                     <div className="z-40 sm:hidden flex flex-col  gap-4  absolute top-0 left-0 w-full h-[100vh] !m-0 items-center justify-center">
                         <Link target="_blank" href="https://www.github.com/a-sabbar" className="text-white relative after:absolute after:bottom-[2px] after:left-0 after:h-[1px] after:w-[0px] after:bg-white after:transition-all after:duration-[1700ms] after:ease-in-out hover:after:w-full">
                             <TextEffect text="Github"/>
@@ -59,7 +59,7 @@ export default function Header() {
                 </>
                 )
           }
-          <Link
+           <Link
           href="https://www.github.com/a-sabbar" className="x:max-sm:hidden text-white !text-xl relative after:absolute after:bottom-[2px] after:left-0 after:h-[1px] after:w-[0px] after:bg-white after:transition-all after:duration-[1700ms] after:ease-in-out hover:after:w-full">
             <TextEffect text="Github"/>
           </Link>
