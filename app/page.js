@@ -30,8 +30,12 @@ export default function Home() {
 return (
 	<div className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden pt-8 px-7 bg-[#FAF9F9]">
 		<div className=" w-full px-2 flex justify-between items-center">
-			<Link href={"/"} style={Mate_SCFont.style} className="text-4xl text-black md:ml-10">
-				Achraf
+			<Link href={"/"} style={Mate_SCFont.style} className="text-4xl text-black md:ml-10 ">
+				<svg width="60" height="auto" viewBox="0 0 682 594" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M339 0L442.057 178.5H235.943L339 0Z" fill="#F1A639"/>
+					<path d="M36.5 527L76 460L120 527H351.5L300.5 438.5H88L130 367L216 213.5H329.5L367.5 277.5H261.5L210 367H339L432 527L472 594H0L36.5 527Z" fill="black"/>
+					<path d="M559.5 527L378 215H461L682 594H520L559.5 527Z" fill="black"/>
+				</svg>
 			</Link>
 			<div className="sm:flex hidden gap-5 items-end  h-fit">
 				<Link href="/" className="font-semibold text-[#E6B655] h-fit text-base " style={CairoFont.style}>

@@ -12,45 +12,18 @@ import Image from 'next/image'
 import Link from "next/link";
 import { title } from "process";
 
-const Project =({bg, title, type} = props) => {
-
-	return (
-	<div className=" relative flex justify-between flex-col  rounded-[15px] setShadow w-[611px] overflow-hidden ">
-			<Image
-				src={bg}
-				alt=""
-				width={2000}
-				height={2000}
-				className="object-cover object-top w-full h-[200px]  opacity-95"
-			/>
-		<div className="w-full h-fit flex bg-white  justify-between items-center py-3  px-[32px] border-t-[1px] border-[#e0dfdc]">
-			<div className="w-fit h-fit">
-				<p style={CabinFont.style} className="text-lg font-bold text-black ">
-					{title}
-				</p>
-				<p style={CabinFont.style} className="text-sm text-[#727272]">
-				{type}
-				</p>
-			</div>
-			<div className="w-[25px] h-[25px] bg-[#e0dfdc34] outline outline-[2px] outline-gray-400 rounded-full flex justify-center items-center">
-				<svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M8.26905 2.13068L13.1382 6.9998L8.26905 11.8689C8.09615 12.0418 7.99902 12.2763 7.99902 12.5208C7.99902 12.7653 8.09615 12.9998 8.26905 13.1727C8.44194 13.3456 8.67644 13.4428 8.92095 13.4428C9.16546 13.4428 9.39996 13.3456 9.57285 13.1727L15.0927 7.65332C15.2655 7.47971 15.3625 7.24474 15.3625 6.9998C15.3625 6.75487 15.2655 6.5199 15.0927 6.34629L9.57285 0.82688C9.48724 0.741272 9.38561 0.673363 9.27376 0.627032C9.1619 0.580701 9.04202 0.556854 8.92095 0.556854C8.79988 0.556854 8.68 0.580701 8.56814 0.627032C8.45629 0.673363 8.35466 0.741272 8.26905 0.82688C8.18344 0.912489 8.11553 1.01412 8.0692 1.12598C8.02287 1.23783 7.99902 1.35771 7.99902 1.47878C7.99902 1.59985 8.02287 1.71973 8.0692 1.83159C8.11553 1.94344 8.18344 2.04507 8.26905 2.13068Z" fill="#E0DFDC"/>
-					<path d="M13.5219 7.92025H1.55618C1.31207 7.92025 1.07795 7.82328 0.905333 7.65066C0.732717 7.47805 0.635742 7.24393 0.635742 6.99982C0.635742 6.7557 0.732717 6.52158 0.905333 6.34897C1.07795 6.17635 1.31207 6.07938 1.55618 6.07938H13.5219V7.92025Z" fill="#E0DFDC"/>
-				</svg>
-			</div>
-		</div>
-	</div>
-	);
-}
-
 
 export default function Home() {
 
 return (
 	<div className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden pt-8 px-7 bg-[#FAF9F9]">
 		<div className=" w-full px-2 flex justify-between items-center">
-			<Link href={"/"} style={Mate_SCFont.style} className="text-4xl text-black md:ml-10">
-				Achraf
+			<Link href={"/"} style={Mate_SCFont.style} className="text-4xl text-black md:ml-10 ">
+				<svg width="60" height="auto" viewBox="0 0 682 594" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M339 0L442.057 178.5H235.943L339 0Z" fill="#F1A639"/>
+					<path d="M36.5 527L76 460L120 527H351.5L300.5 438.5H88L130 367L216 213.5H329.5L367.5 277.5H261.5L210 367H339L432 527L472 594H0L36.5 527Z" fill="black"/>
+					<path d="M559.5 527L378 215H461L682 594H520L559.5 527Z" fill="black"/>
+				</svg>
 			</Link>
 			<div className="sm:flex hidden gap-5 items-end  h-fit">
 				<Link href="/" className="font-semibold h-fit text-base text-black " style={CairoFont.style}>
