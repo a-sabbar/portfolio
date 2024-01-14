@@ -11,13 +11,72 @@ import {
 import Image from 'next/image'
 import Link from "next/link";
 import { title } from "process";
+import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
 
 
 export default function Home() {
 
+	const skillsRef = useRef(null);
+	const bodyRef = useRef(null);
+	const handleShowSkills = () => {
+		if(skillsRef.current){
+			// skillsRef.current.scrollIntoView({behavior: "smooth"})
+			skillsRef.current.classList.toggle("max-h-[82px]")
+			bodyRef.current.classList.toggle("row-span-2")
+		}
+	}
+  
+	const handleOpen = () => {
+		setOpen(true)
+		setClose(false)
+	}
+	const handleClose = () => {
+		setOpen(false)
+		setClose(true)
+	}
+	const [open, setOpen] = useState(false)
+	const [close, setClose] = useState(true)
+	const menuRef = useRef(null)
+
+	const menuVariants = {
+		hidden: {
+			opacity: 0,
+			transition: {
+				duration: 0.5,
+				when: "afterChildren",
+				staggerChildren: 0.5,
+			},
+		},
+		visible: {
+			opacity: 1,
+			transition: {
+				duration: 2,
+				type: "easeInOut",
+			},
+		},
+	}
+	const menuChildVariants = {
+		hidden: {
+			scale: 1,
+			opacity: 0.9,
+			transition: {
+				duration: 1,
+				type: "easeInOut",
+			},
+		},
+		visible: {
+			scale:100,
+			opacity: 1,
+			transition: {
+				duration: 1,
+				type: "easeInOut",
+			},
+		},
+	}
 return (
 	<div className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden pt-8 px-7 bg-[#FAF9F9]">
-		<div className=" w-full px-2 flex justify-between items-center">
+		<div className=" w-full py-5 px-7 fixed top-0  bg-[#FAF9F9] flex justify-between items-center   z-50">
 			<Link href={"/"} style={Mate_SCFont.style} className="text-4xl text-black md:ml-10 ">
 				<svg width="60" height="auto" viewBox="0 0 682 594" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M339 0L442.057 178.5H235.943L339 0Z" fill="#F1A639"/>
@@ -26,29 +85,93 @@ return (
 				</svg>
 			</Link>
 			<div className="sm:flex hidden gap-5 items-end  h-fit">
-				<Link href="/" className="font-semibold h-fit text-base text-black " style={CairoFont.style}>
+				<Link href="/" className="font-semibold  h-fit text-base " style={CairoFont.style}>
 					Home
 				</Link>
 				<Link href="/Projects" className="font-semibold h-fit text-base ml-5" style={CairoFont.style}>
 					Projects
 				</Link>
-				<Link href="/About" className="text-[#E6B655] font-semibold h-fit text-base ml-5" style={CairoFont.style}>
+				<Link href="/About" className=" font-semibold h-fit text-[#E6B655] text-base ml-5" style={CairoFont.style}>
 					About
 				</Link>
-				<Link href="/Contact" className="text-black font-semibold h-fit text-base ml-5" style={CairoFont.style}>
+				<Link href="/Contact" className=" font-semibold h-fit text-base ml-5" style={CairoFont.style}>
 					Contact
 				</Link>
 			</div>
 			<Link href={"mailto:achraf.sabbar2002@gmail.com"} className="px-[35px] py-[10px] bg-black text-white font-medium tracking-wide rounded-full md:flex hidden ">
 				Let's talk 👋
 			</Link>
-			<div className="relative flex-col justify-center h-fit items-center z-50 gap-[5px] hidden x:max-sm:flex cursor-pointer" onClick={() => open ? handleClose() : handleOpen()}>
-              <div className="w-[40px] h-[3.5px] bg-[#000]  transition-all duration-500 rounded-md"></div>
-              <div className="w-[30px] h-[3.5px] bg-[#000] transition-all duration-150 rounded-md"></div>
-              <div className="w-[40px] h-[3.5px] bg-[#000]  transition-all duration-500 rounded-md"></div>
-          </div>
+			<div className="relative flex-col justify-center h-fit items-center z-40 gap-[5px] hidden x:max-sm:flex cursor-pointer" onClick={() => setOpen(true)}>
+				<div className="w-[40px] h-[3.5px] bg-[#000]  transition-all duration-500 rounded-md"></div>
+				<div className="w-[30px] h-[3.5px] bg-[#000] transition-all duration-150 rounded-md"></div>
+				<div className="w-[40px] h-[3.5px] bg-[#000]  transition-all duration-500 rounded-md"></div>
+				<AnimatePresence>
+						{
+							 open &&(
+								<motion.div 
+									variants={menuChildVariants}
+									initial="hidden"
+									animate="visible"
+									exit="hidden"
+									className="w-[20px] h-[20px] z-40    absolute rounded-full overflow-hidden  bg-[#FAF9F9] flex justify-center items-center">
+								</motion.div>
+							 )
+				 	}
+				 </AnimatePresence>
+			</div>
+			<AnimatePresence>
+				{
+					open && (
+						<motion.div
+							initial="hidden"
+							animate="visible"
+							exit="hidden"
+							variants={menuVariants}
+							className={`fixed top-0 py-5 px-7 left-0 w-full  flex flex-col  justify-between items-center gap-[50px] z-50`}>
+							<div className="w-full  flex justify-between items-center">
+								<Link href={"/"} style={Mate_SCFont.style} className="text-4xl text-black md:ml-10 ">
+									<svg width="60" height="auto" viewBox="0 0 682 594" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M339 0L442.057 178.5H235.943L339 0Z" fill="#F1A639"/>
+										<path d="M36.5 527L76 460L120 527H351.5L300.5 438.5H88L130 367L216 213.5H329.5L367.5 277.5H261.5L210 367H339L432 527L472 594H0L36.5 527Z" fill="black"/>
+										<path d="M559.5 527L378 215H461L682 594H520L559.5 527Z" fill="black"/>
+									</svg>
+								</Link>
+								<div
+									onClick={() => setOpen(false)}
+									className="relative flex-col j h-fit i z-50 gap-[5px] hidden x:max-sm:flex cursor-pointer">
+										<div className="relative flex-col justify-center h-fit items-center z-40 gap-[5px] hidden x:max-sm:flex cursor-pointer">
+											<div className="w-[40px] h-[3.5px] bg-[#000]  transition-all duration-500 rounded-md"></div>
+											<div className="w-[30px] h-[3.5px] bg-[#000] transition-all duration-150 rounded-md"></div>
+											<div className="w-[40px] h-[3.5px] bg-[#000]  transition-all duration-500 rounded-md"></div>
+										</div>
+								</div>
+							</div>
+							<div className="flex flex-col gap-5 items- justify-center w-fit ">
+								<Link href="/" className="font-semibold w-fit   h-fit text-base " style={CairoFont.style}>
+									Home
+								</Link>
+								<Link href="/Projects" className="font-semibold w-fit m  h-fit text-base" style={CairoFont.style}>
+									Projects
+								</Link>
+								<Link href="/About" className=" font-semibold w-fit text-[#E6B655] h-fit text-base" style={CairoFont.style}>
+									About
+								</Link>
+								<Link href="/Contact" className="text-black  w-fit font-semibold h-fit text-base" style={CairoFont.style}>
+									Contact
+								</Link>
+							</div>
+							<Link href={"mailto:achraf.sabbar2002@gmail.com"} className="px-[35px] py-[10px] bg-black text-white font-medium tracking-wide rounded-full ">
+								Let's talk 👋
+							</Link>
+
+
+						</motion.div>
+					)
+
+				}
+			</AnimatePresence>
 		</div>
-		<div className="grid  grid-cols-1 lg:grid-cols-4 mt-[38px] gap-[38px] xl:w-[1100px]">
+		<div className="grid  grid-cols-1 lg:grid-cols-4 mt-[100px] gap-[38px] xl:w-[1100px]">
 			<div className="setShadow2 h-[234px] w-full flex justify-center  bg-[#000] rounded-[25px] shadow-new-shadow col-span-3 overflow-hidden">
 					<Image
 						src="/myImage.jpg"

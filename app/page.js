@@ -10,9 +10,10 @@ import {
 	CabinFont,
 } from "../components/Fonts/Fonts";
 import Image from 'next/image'
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
-
+import { motion, AnimatePresence } from "framer-motion"
+import { type } from "os";
 
 
 export default function Home() {
@@ -27,9 +28,56 @@ export default function Home() {
 		}
 	}
   
+	const handleOpen = () => {
+		setOpen(true)
+		setClose(false)
+	}
+	const handleClose = () => {
+		setOpen(false)
+		setClose(true)
+	}
+	const [open, setOpen] = useState(false)
+	const [close, setClose] = useState(true)
+	const menuRef = useRef(null)
+
+	const menuVariants = {
+		hidden: {
+			opacity: 0,
+			transition: {
+				duration: 0.5,
+				when: "afterChildren",
+				staggerChildren: 0.5,
+			},
+		},
+		visible: {
+			opacity: 1,
+			transition: {
+				duration: 2,
+				type: "easeInOut",
+			},
+		},
+	}
+	const menuChildVariants = {
+		hidden: {
+			scale: 1,
+			opacity: 0.9,
+			transition: {
+				duration: 1,
+				type: "easeInOut",
+			},
+		},
+		visible: {
+			scale:100,
+			opacity: 1,
+			transition: {
+				duration: 1,
+				type: "easeInOut",
+			},
+		},
+	}
 return (
 	<div className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden pt-8 px-7 bg-[#FAF9F9]">
-		<div className=" w-full px-2 flex justify-between items-center">
+		<div className=" w-full py-5 px-7 fixed top-0  bg-[#FAF9F9] flex justify-between items-center   z-50">
 			<Link href={"/"} style={Mate_SCFont.style} className="text-4xl text-black md:ml-10 ">
 				<svg width="60" height="auto" viewBox="0 0 682 594" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M339 0L442.057 178.5H235.943L339 0Z" fill="#F1A639"/>
@@ -54,13 +102,77 @@ return (
 			<Link href={"mailto:achraf.sabbar2002@gmail.com"} className="px-[35px] py-[10px] bg-black text-white font-medium tracking-wide rounded-full md:flex hidden ">
 				Let's talk 👋
 			</Link>
-			<div className="relative flex-col justify-center h-fit items-center z-50 gap-[5px] hidden x:max-sm:flex cursor-pointer" onClick={() => open ? handleClose() : handleOpen()}>
-              <div className="w-[40px] h-[3.5px] bg-[#000]  transition-all duration-500 rounded-md"></div>
-              <div className="w-[30px] h-[3.5px] bg-[#000] transition-all duration-150 rounded-md"></div>
-              <div className="w-[40px] h-[3.5px] bg-[#000]  transition-all duration-500 rounded-md"></div>
-          </div>
+			<div className="relative flex-col justify-center h-fit items-center z-40 gap-[5px] hidden x:max-sm:flex cursor-pointer" onClick={() => setOpen(true)}>
+				<div className="w-[40px] h-[3.5px] bg-[#000]  transition-all duration-500 rounded-md"></div>
+				<div className="w-[30px] h-[3.5px] bg-[#000] transition-all duration-150 rounded-md"></div>
+				<div className="w-[40px] h-[3.5px] bg-[#000]  transition-all duration-500 rounded-md"></div>
+				<AnimatePresence>
+						{
+							 open &&(
+								<motion.div 
+									variants={menuChildVariants}
+									initial="hidden"
+									animate="visible"
+									exit="hidden"
+									className="w-[20px] h-[20px] z-40    absolute rounded-full overflow-hidden  bg-[#FAF9F9] flex justify-center items-center">
+								</motion.div>
+							 )
+				 	}
+				 </AnimatePresence>
+			</div>
+			<AnimatePresence>
+				{
+					open && (
+						<motion.div
+							initial="hidden"
+							animate="visible"
+							exit="hidden"
+							variants={menuVariants}
+							className={`fixed top-0 py-5 px-7 left-0 w-full  flex flex-col  justify-between items-center gap-[50px] z-50`}>
+							<div className="w-full  flex justify-between items-center">
+								<Link href={"/"} style={Mate_SCFont.style} className="text-4xl text-black md:ml-10 ">
+									<svg width="60" height="auto" viewBox="0 0 682 594" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M339 0L442.057 178.5H235.943L339 0Z" fill="#F1A639"/>
+										<path d="M36.5 527L76 460L120 527H351.5L300.5 438.5H88L130 367L216 213.5H329.5L367.5 277.5H261.5L210 367H339L432 527L472 594H0L36.5 527Z" fill="black"/>
+										<path d="M559.5 527L378 215H461L682 594H520L559.5 527Z" fill="black"/>
+									</svg>
+								</Link>
+								<div
+									onClick={() => setOpen(false)}
+									className="relative flex-col j h-fit i z-50 gap-[5px] hidden x:max-sm:flex cursor-pointer">
+										<div className="relative flex-col justify-center h-fit items-center z-40 gap-[5px] hidden x:max-sm:flex cursor-pointer">
+											<div className="w-[40px] h-[3.5px] bg-[#000]  transition-all duration-500 rounded-md"></div>
+											<div className="w-[30px] h-[3.5px] bg-[#000] transition-all duration-150 rounded-md"></div>
+											<div className="w-[40px] h-[3.5px] bg-[#000]  transition-all duration-500 rounded-md"></div>
+										</div>
+								</div>
+							</div>
+							<div className="flex flex-col gap-5 items- justify-center w-fit ">
+								<Link href="/" className="font-semibold w-fit  text-[#E6B655] h-fit text-base " style={CairoFont.style}>
+									Home
+								</Link>
+								<Link href="/Projects" className="font-semibold w-fit m  h-fit text-base" style={CairoFont.style}>
+									Projects
+								</Link>
+								<Link href="/About" className=" font-semibold w-fit  h-fit text-base" style={CairoFont.style}>
+									About
+								</Link>
+								<Link href="/Contact" className="text-black  w-fit font-semibold h-fit text-base" style={CairoFont.style}>
+									Contact
+								</Link>
+							</div>
+							<Link href={"mailto:achraf.sabbar2002@gmail.com"} className="px-[35px] py-[10px] bg-black text-white font-medium tracking-wide rounded-full ">
+								Let's talk 👋
+							</Link>
+
+
+						</motion.div>
+					)
+
+				}
+			</AnimatePresence>
 		</div>
-		<div className="grid  grid-cols-1 lg:grid-cols-2 mt-[38px] gap-[38px] ">
+		<div className="grid  grid-cols-1 lg:grid-cols-2 mt-[100px] gap-[38px] z-0">
 			<div className="setShadow2 h-[234px] w-full flex justify-between flex-col bg-[#FFF] rounded-[25px] pt-[50px] px-[50px]  pb-[30px] shadow-new-shadow max-w-[641px] ">
 				<div className="w-[80px] h-[80px] relative rounded-full overflow-hidden ">
 					<Image
@@ -304,11 +416,11 @@ return (
 					</div>
 					<div className="flex flex-col gap-2 items-center justify-center">
 						<div className="min-w-[55px] max-w-[55px] h-[50px]">
-						<svg width="auto" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M52.2906 13.9109L30.4047 1.31407C30.0422 1.08751 29.5438 0.996887 29 0.996887C28.4563 0.996887 27.9578 1.13282 27.5953 1.31407L5.84531 13.9563C5.075 14.4094 4.53125 15.5422 4.53125 16.4031V41.6422C4.53125 42.1406 4.62188 42.7297 4.98438 43.2281L53.3781 15.1344C53.1063 14.5906 52.6984 14.1828 52.2906 13.9109Z" fill="#659AD3"/>
-<path d="M4.84863 43.1828C5.0752 43.5453 5.39238 43.8625 5.70957 44.0437L27.5502 56.6859C27.9127 56.9125 28.4111 57.0031 28.9549 57.0031C29.4986 57.0031 29.9971 56.8672 30.3596 56.6859L52.1096 44.0437C52.8799 43.5906 53.4236 42.4578 53.4236 41.5969V16.3578C53.4236 15.95 53.3783 15.4969 53.1518 15.0891L4.84863 43.1828Z" fill="#03599C"/>
-<path d="M38.6516 34.4828C36.7484 37.8359 33.1234 40.1016 29 40.1016C22.8828 40.1016 17.8984 35.1172 17.8984 29C17.8984 22.8828 22.8828 17.8984 29 17.8984C33.1234 17.8984 36.7484 20.1641 38.6516 23.5625L44.5422 20.1641C41.4609 14.7719 35.6609 11.1016 29 11.1016C19.1219 11.1016 11.1016 19.1219 11.1016 29C11.1016 38.8781 19.1219 46.8984 29 46.8984C35.6156 46.8984 41.4156 43.2734 44.4969 37.9266L38.6516 34.4828Z" fill="white"/>
-</svg> 
+							<svg width="auto" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M52.2906 13.9109L30.4047 1.31407C30.0422 1.08751 29.5438 0.996887 29 0.996887C28.4563 0.996887 27.9578 1.13282 27.5953 1.31407L5.84531 13.9563C5.075 14.4094 4.53125 15.5422 4.53125 16.4031V41.6422C4.53125 42.1406 4.62188 42.7297 4.98438 43.2281L53.3781 15.1344C53.1063 14.5906 52.6984 14.1828 52.2906 13.9109Z" fill="#659AD3" />
+								<path d="M4.84863 43.1828C5.0752 43.5453 5.39238 43.8625 5.70957 44.0437L27.5502 56.6859C27.9127 56.9125 28.4111 57.0031 28.9549 57.0031C29.4986 57.0031 29.9971 56.8672 30.3596 56.6859L52.1096 44.0437C52.8799 43.5906 53.4236 42.4578 53.4236 41.5969V16.3578C53.4236 15.95 53.3783 15.4969 53.1518 15.0891L4.84863 43.1828Z" fill="#03599C" />
+								<path d="M38.6516 34.4828C36.7484 37.8359 33.1234 40.1016 29 40.1016C22.8828 40.1016 17.8984 35.1172 17.8984 29C17.8984 22.8828 22.8828 17.8984 29 17.8984C33.1234 17.8984 36.7484 20.1641 38.6516 23.5625L44.5422 20.1641C41.4609 14.7719 35.6609 11.1016 29 11.1016C19.1219 11.1016 11.1016 19.1219 11.1016 29C11.1016 38.8781 19.1219 46.8984 29 46.8984C35.6156 46.8984 41.4156 43.2734 44.4969 37.9266L38.6516 34.4828Z" fill="white" />
+							</svg> 
 						</div>
 						<p style={CabinFont.style} className="text-lg text-black font-semibold">
 							C
@@ -317,18 +429,18 @@ return (
 					<div className="flex flex-col gap-2 items-center justify-center">
 						<div className="min-w-[55px] max-w-[55px] h-[50px]">
 						<svg width="auto" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clipPath="url(#clip0_164_20)">
-<path d="M51.9603 41.9213C52.3497 41.2462 52.5908 40.4863 52.5908 39.8024V16.0913C52.5908 15.4096 52.3501 14.6488 51.9603 13.9738L27.7578 27.9475L51.9603 41.9213Z" fill="#00599C"/>
-<path d="M29.9077 55.3814L50.4409 43.5278C51.0324 43.1861 51.5705 42.5963 51.9604 41.9213L27.7579 27.9475L3.55273 41.9213C3.94211 42.5963 4.48067 43.1856 5.07217 43.5278L25.6054 55.3814C26.7879 56.0648 28.7247 56.0648 29.9069 55.3814H29.9077Z" fill="#004482"/>
-<path d="M51.96 13.9742C51.5702 13.2978 51.0321 12.708 50.4406 12.3681L29.9069 0.512737C28.7244 -0.171075 26.788 -0.171075 25.6054 0.512737L5.07224 12.3681C3.88924 13.0497 2.92236 14.7262 2.92236 16.0912V39.802C2.92236 40.4854 3.16299 41.2457 3.5528 41.9208L27.7571 27.9475L51.96 13.9742Z" fill="#659AD2"/>
-<path d="M27.757 11.3903C18.6277 11.3903 11.2007 18.8177 11.2007 27.9471C11.2007 37.0764 18.6277 44.5038 27.757 44.5038C33.6479 44.5038 39.1425 41.3332 42.0939 36.2307L34.9298 32.0841C33.4511 34.6391 30.7036 36.225 27.757 36.225C23.1926 36.225 19.4786 32.5115 19.4786 27.9466C19.4786 23.3817 23.193 19.6682 27.757 19.6682C30.7014 19.6682 33.4519 21.2559 34.9276 23.8092L42.0939 19.663C39.1407 14.56 33.6479 11.3903 27.757 11.3903ZM40.6348 25.1869V27.0274H38.7942V28.8662H40.6348V30.7068H42.4736V28.8662H44.3124V27.0274H42.4736V25.1869H40.6348ZM47.5324 25.1869V27.0274H45.6932V28.8662H47.5324V30.7068H49.373V28.8662H51.2118V27.0274H49.373V25.1869H47.5324Z" fill="white"/>
-</g>
-<defs>
-<clipPath id="clip0_164_20">
-<rect width="56" height="56" fill="white"/>
-</clipPath>
-</defs>
-</svg> 
+							<g clipPath="url(#clip0_164_20)">
+							<path d="M51.9603 41.9213C52.3497 41.2462 52.5908 40.4863 52.5908 39.8024V16.0913C52.5908 15.4096 52.3501 14.6488 51.9603 13.9738L27.7578 27.9475L51.9603 41.9213Z" fill="#00599C"/>
+							<path d="M29.9077 55.3814L50.4409 43.5278C51.0324 43.1861 51.5705 42.5963 51.9604 41.9213L27.7579 27.9475L3.55273 41.9213C3.94211 42.5963 4.48067 43.1856 5.07217 43.5278L25.6054 55.3814C26.7879 56.0648 28.7247 56.0648 29.9069 55.3814H29.9077Z" fill="#004482"/>
+							<path d="M51.96 13.9742C51.5702 13.2978 51.0321 12.708 50.4406 12.3681L29.9069 0.512737C28.7244 -0.171075 26.788 -0.171075 25.6054 0.512737L5.07224 12.3681C3.88924 13.0497 2.92236 14.7262 2.92236 16.0912V39.802C2.92236 40.4854 3.16299 41.2457 3.5528 41.9208L27.7571 27.9475L51.96 13.9742Z" fill="#659AD2"/>
+							<path d="M27.757 11.3903C18.6277 11.3903 11.2007 18.8177 11.2007 27.9471C11.2007 37.0764 18.6277 44.5038 27.757 44.5038C33.6479 44.5038 39.1425 41.3332 42.0939 36.2307L34.9298 32.0841C33.4511 34.6391 30.7036 36.225 27.757 36.225C23.1926 36.225 19.4786 32.5115 19.4786 27.9466C19.4786 23.3817 23.193 19.6682 27.757 19.6682C30.7014 19.6682 33.4519 21.2559 34.9276 23.8092L42.0939 19.663C39.1407 14.56 33.6479 11.3903 27.757 11.3903ZM40.6348 25.1869V27.0274H38.7942V28.8662H40.6348V30.7068H42.4736V28.8662H44.3124V27.0274H42.4736V25.1869H40.6348ZM47.5324 25.1869V27.0274H45.6932V28.8662H47.5324V30.7068H49.373V28.8662H51.2118V27.0274H49.373V25.1869H47.5324Z" fill="white"/>
+							</g>
+							<defs>
+							<clipPath id="clip0_164_20">
+							<rect width="56" height="56" fill="white"/>
+							</clipPath>
+							</defs>
+							</svg> 
 						</div>
 						<p style={CabinFont.style} className="text-lg text-black font-semibold">
 							C++
